@@ -1,0 +1,59 @@
+<mujoco model='Panda_valve'>
+    <!-- ======= WORLD ======= -->
+    <option timestep = '0.001'/>
+    <worldbody>
+        <light directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+        <geom name='ground' size="1.5 1.5 0.25" pos="0 0 0" type="plane" contype="1" conaffinity="0"/>
+        <camera name="fixed" pos="-0.3 0 1.5" quat="0.92387953 0 -0.38268343 0" />
+        <body name="fr3" pos="0 0 0">
+            <include file="mjinclude_fr3.xml"/>
+        </body>
+
+
+        <!-- ======= TABLE ======= -->
+        <body name="table">
+            <geom size="0.45 0.45 0.025" pos="0 0 -0.225" type="box"/>
+            <geom size="0.04 0.25" pos="0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.25" pos="-0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.25" pos="0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.25" pos="-0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+        </body>
+
+        <body name="valve" pos="0.38 1 .45" axisangle="1 0 0 3.14">
+        <!-- <body name="valve" pos="0.38 0 .45" axisangle="1 0 0 3.14"> -->
+            <inertial diaginertia="0 0 0" mass="1" pos="0 0 0"/>
+            <include file="mjinclude_valve.xml"/>
+        </body>
+
+        <!-- ======= handle 0  ======= -->
+        <body name="handle" pos="0.52 0 0.8" quat="0.25192415 -0.64412663 0.57897236 0.4317709">
+            <inertial diaginertia="0 0 0" mass="1" pos="0 0 0"/>
+            <include file="mjinclude_handle.xml"/>
+        </body>
+
+        <!-- ======= handle 1  ======= -->
+        <!-- <body name="handle" pos="0.28 0 0.8" quat="-0.49077636 0.42062713 -0.75930974 0.07523369">
+            <inertial diaginertia="0 0 0" mass="1" pos="0 0 0"/>
+            <include file="mjinclude_handle.xml"/>
+        </body> -->
+
+        <!-- ======= handle 2  ======= -->
+        <!-- <body name="handle" pos="0.326 0.232 0.709" quat="0.474576307745582 -0.089013785474907 0.275616460318178 0.831197594392378">
+            <inertial diaginertia="0 0 0" mass="1" pos="0 0 0"/>
+            <include file="mjinclude_handle.xml"/>
+        </body> -->
+
+        <!-- ======= handle 3  ======= -->
+        <!-- <body name="handle" pos="0.55 0. 0.75" quat="0. -0.707 0.707 0.">
+            <inertial diaginertia="0 0 0" mass="1" pos="0 0 0"/>
+            <include file="mjinclude_handle.xml"/>
+        </body> -->
+
+        
+
+    </worldbody>
+
+    <include file='scene_valve_assets.xml'/>
+
+
+</mujoco>
