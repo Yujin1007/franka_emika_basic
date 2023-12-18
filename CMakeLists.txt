@@ -31,7 +31,7 @@ message(STATUS "current : " ${CMAKE_CURRENT_SOURCE_DIR})
 add_definitions(-DMJSIMULATE_STATIC) # use static =,solve the "error LNK2001/LNK2019" in windows
 
 find_package (X11)
-set(MUJOCO_HOME {CMAKE_SOURCE_DIR})
+set(MUJOCO_HOME ${CMAKE_SOURCE_DIR})
 message(STATUS "MUJOCO_HOME: " ${MUJOCO_HOME})
 
 # catkin_package(
@@ -41,7 +41,8 @@ message(STATUS "MUJOCO_HOME: " ${MUJOCO_HOME})
 #  DEPENDS system_lib
 # )
 
-#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${MUJOCO_HOME}/lib)
+# include_directories(${MUJOCO_HOME}/lib)
 
 
 # link_directories(
@@ -97,9 +98,9 @@ target_link_libraries(${PROJECT_NAME}
   glfw
   # -lpython3.8
 	-lrbdl
-    	-lrbdl_urdfreader
-    	-lpthread
-    	OpenGL::OpenGL
+  -lrbdl_urdfreader
+  -lpthread
+  OpenGL::OpenGL
 	OpenGL::EGL
 	GLEW::GLEW
 	${GLEW_LIBRARIES}
@@ -110,9 +111,11 @@ target_link_libraries(${PROJECT_NAME}
 
 
 target_link_directories(${PROJECT_NAME} PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/mujoco-2.3.1/lib
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/
 )
-
+# target_link_directories(${PROJECT_NAME} PUBLIC
+#   ${CMAKE_CURRENT_SOURCE_DIR}/lib/mujoco-2.3.1/lib
+# )
 
 # add_library(franka_emika_lib
 #     ${COM_SRC}
